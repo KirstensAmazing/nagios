@@ -47,7 +47,7 @@ default['nagios']['cache_dir']  = '/var/cache/nagios3'
 default['nagios']['state_dir']  = '/var/lib/nagios3'
 default['nagios']['run_dir']    = '/var/run/nagios3'
 default['nagios']['docroot']    = '/usr/share/nagios3/htdocs'
-default['nagios']['enable_ssl'] = false
+default['nagios']['enable_ssl'] = true
 default['nagios']['http_port']  = node['nagios']['enable_ssl'] ? '443' : '80'
 default['nagios']['server_name'] = node.has_key?(:domain) ? "nagios.#{domain}" : 'nagios'
 default['nagios']['ssl_req'] = '/C=US/ST=Several/L=Locality/O=Example/OU=Operations/' +
@@ -63,7 +63,7 @@ default['nagios']['check_external_commands'] = true
 default['nagios']['default_contact_groups']  = %w{admins}
 default['nagios']['sysadmin_email']          = "root@localhost"
 default['nagios']['sysadmin_sms_email']      = "root@localhost"
-default['nagios']['server_auth_method']      = "openid"
+default['nagios']['server_auth_method']      = "htauth"
 default['nagios']['users_databag_group']     = "sysadmin"
 default['nagios']['host_name_attribute']     = "hostname"
 
@@ -89,4 +89,5 @@ default['nagios']['default_service']['flap_detection'] = true
 default['nagios']['server']['web_server'] = :apache
 default['nagios']['server']['nginx_dispatch'] = :cgi
 default['nagios']['server']['stop_apache'] = false
-default['nagios']['server']['redirect_root'] = false
+default['nagios']['server']['redirect_root'] = true
+default['nagios']['server']['normalize_hostname'] = true
